@@ -4,6 +4,7 @@ import (
 	"github.com/LukeEmmet/html2gemini"
 	gemini "github.com/makeworld-the-better-one/go-gemini"
 	flag "github.com/spf13/pflag"
+	"strconv"
 
 	"fmt"
 	"io"
@@ -32,6 +33,7 @@ var (
 	maxDownloadTime   = flag.IntP("maxDownloadTime", "t", 10, "Max download time (s)\n")
 	maxConnectTime    = flag.IntP("maxConnectTime", "T", 5, "Max connect time (s)\n")
 	port              = flag.IntP("port", "p", 1965, "Server port")
+	address			  = flag.StringP("address", "a", "127.0.0.1", "Bind to address\n")
 )
 
 func fatal(format string, a ...interface{}) {
@@ -191,8 +193,9 @@ func main() {
 
 	handler := WebPipeHandler{}
 
-	info("Starting server on port: %d", *port)
-	err := gemini.ListenAndServe("", *serverCert, *serverKey, handler)
+	info("Starting server on %s port: %d", *address, *port)
+
+	err := gemini.ListenAndServe(*address + ":" + strconv.Itoa(*port), *serverCert, *serverKey, handler)
 	if err != nil {
 		log.Fatal(err)
 	}

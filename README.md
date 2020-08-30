@@ -38,6 +38,8 @@ Usage:
 
 duckling-proxy [flags]
 
+  -a, --address string          Bind to address
+                                 (default "127.0.0.1")
   -m, --citationMarkers         Use footnote style citation markers
   -s, --citationStart int       Start citations from this index (default 1)
   -e, --emitImagesAsLinks       Emit links to included images
@@ -52,6 +54,7 @@ duckling-proxy [flags]
   -c, --serverCert string       serverCert path.
   -k, --serverKey string        serverKey path.
   -u, --userAgent string        User agent for HTTP requests
+  
 ```
 
 ## Remarks
