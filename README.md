@@ -53,6 +53,7 @@ duckling-proxy [flags]
   -r, --prettyTables            Pretty tables - works with most simple tables
   -c, --serverCert string       serverCert path.
   -k, --serverKey string        serverKey path.
+      --unfiltered              Do not filter text/html to text/gemini
   -u, --userAgent string        User agent for HTTP requests
   
 ```

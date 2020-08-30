@@ -34,6 +34,8 @@ var (
 	maxConnectTime    = flag.IntP("maxConnectTime", "T", 5, "Max connect time (s)\n")
 	port              = flag.IntP("port", "p", 1965, "Server port")
 	address			  = flag.StringP("address", "a", "127.0.0.1", "Bind to address\n")
+	unfiltered      = flag.BoolP("unfiltered", "", false, "Do not filter text/html to text/gemini")
+
 )
 
 func fatal(format string, a ...interface{}) {
@@ -158,7 +160,7 @@ func (h WebPipeHandler) Handle(r gemini.Request) *gemini.Response {
 		info("Content-Type: %s", contentType)
 
 		var body io.ReadCloser
-		if strings.Contains(contentType, "text/html") {
+		if !*unfiltered && strings.Contains(contentType, "text/html") {
 
 			info("Converting to text/gemini: %s", r.URL.String())
 
