@@ -10,9 +10,12 @@ The Small Web are those pages on the WWW that are typically characterised:
 * simple and document/content centric, using simple headings, bullets, links and tables only
 * accessible to different web clients, but do not need a monster browser such as Chrome to view them
 * do not require client side javascript
-* do not require tracking, cookies, or authentication
+* do not require tracking, cookies, forms or authentication to be viewed
+* can be accessed using standard HTTP GET requests
 * could be rendered as text/gemini without significant loss of information
-* apart from the huge commercial mega sites, the majority of the internet
+* apart from the huge commercial mega sites, a significant portion of the web
+
+With Duckling, you can now browse the Small Web using your favourite Gemini client, and just open a standard web browser only when you need to!
 
 ## What is the Duckling proxy?
 
