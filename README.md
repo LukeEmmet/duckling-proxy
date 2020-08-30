@@ -16,13 +16,17 @@ The Small Web are those pages on the WWW that are typically characterised:
 
 ## What is the Duckling proxy?
 
-The Duckling proxy is a scheme-specific filtering proxy for Gemini clients to access the WWW. It behaves as a normal Gemini server, except it retrieves its content from the web. You can tailor its behaviour when it starts, to tailor how web pages are transformed to gemtext.
+The Duckling proxy is a scheme-specific filtering proxy for Gemini clients to access the web. It behaves as a normal Gemini server, except it retrieves its content from the web. You can tailor its behaviour when it starts, to tailor how web pages are transformed to gemtext.
 
 It is scheme-specific, i.e. it is designed to handle HTTP requests only. Agena is another example of a scheme specific proxy, supporting <code>gopher://</code>
 
 Web pages are translated to text/gemini. Other web resources are returned directly.
 
 The primary intended use case for this proxy is as a personal proxy to make the web accessible to your favourite Gemini client. 
+
+## Why is it called "Duckling"?
+
+Small Web Daemon -> Small WebD -> Small webbed -> Duckling.
 
 ## Usage
 
