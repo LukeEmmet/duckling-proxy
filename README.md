@@ -1,4 +1,4 @@
-# duckling-proxy
+# duckling-proxy 🦆
 Duckling proxy is a Gemini proxy to access the Small Web. 
 
 Cross platform, written in Go.
@@ -16,7 +16,7 @@ The Small Web are those pages on the WWW that are typically characterised:
 
 ## What is the Duckling proxy?
 
-The Duckling proxy is a scheme-specific filtering proxy for Gemini clients to access the web. It behaves as a normal Gemini server, except it retrieves its content from the web. You can tailor its behaviour when it starts, to tailor how web pages are transformed to gemtext.
+The Duckling proxy 🦆 is a scheme-specific filtering proxy for Gemini clients to access the web. It behaves as a normal Gemini server, except it retrieves its content from the web. You can tailor its behaviour when it starts, to tailor how web pages are transformed to gemtext.
 
 It is scheme-specific, i.e. it is designed to handle HTTP requests only. Agena is another example of a scheme specific proxy, supporting <code>gopher://</code>
 
