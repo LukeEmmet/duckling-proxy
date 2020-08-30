@@ -12,6 +12,7 @@ The Small Web are those pages on the WWW that are typically characterised:
 * do not require client side javascript
 * do not require tracking, cookies, or authentication
 * could be rendered as text/gemini without significant loss of information
+* apart from the huge commercial mega sites, the majority of the internet
 
 ## What is the Duckling proxy?
 
