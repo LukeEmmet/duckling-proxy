@@ -3,7 +3,7 @@ module github.com/LukeEmmet/duckling-proxy
 go 1.14
 
 require (
-	github.com/LukeEmmet/html2gemini v0.0.0-20200830203845-29b349f6dc18
+	github.com/LukeEmmet/html2gemini v0.0.0-20200831220433-65476d2a84ff
 	github.com/makeworld-the-better-one/go-gemini v0.8.5
 	github.com/olekukonko/tablewriter v0.0.4 // indirect
 	github.com/spf13/pflag v1.0.5
