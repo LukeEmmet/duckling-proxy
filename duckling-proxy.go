@@ -33,9 +33,8 @@ var (
 	maxDownloadTime   = flag.IntP("maxDownloadTime", "t", 10, "Max download time (s)\n")
 	maxConnectTime    = flag.IntP("maxConnectTime", "T", 5, "Max connect time (s)\n")
 	port              = flag.IntP("port", "p", 1965, "Server port")
-	address			  = flag.StringP("address", "a", "127.0.0.1", "Bind to address\n")
-	unfiltered      = flag.BoolP("unfiltered", "", false, "Do not filter text/html to text/gemini")
-
+	address           = flag.StringP("address", "a", "127.0.0.1", "Bind to address\n")
+	unfiltered        = flag.BoolP("unfiltered", "", false, "Do not filter text/html to text/gemini")
 )
 
 func fatal(format string, a ...interface{}) {
@@ -52,7 +51,6 @@ func info(format string, a ...interface{}) {
 	format = "Info: " + strings.TrimRight(format, "\n") + "\n"
 	fmt.Fprintf(os.Stderr, format, a...)
 }
-
 
 func check(e error) {
 	if e != nil {
@@ -89,7 +87,6 @@ func htmlToGmi(inputHtml string) (string, error) {
 	return html2gemini.FromString(inputHtml, *ctx)
 
 }
-
 
 func (h WebPipeHandler) Handle(r gemini.Request) *gemini.Response {
 
@@ -137,7 +134,6 @@ func (h WebPipeHandler) Handle(r gemini.Request) *gemini.Response {
 		return &gemini.Response{43, "Remote host did not respond with valid HTTP", nil, nil}
 	}
 
-
 	defer response.Body.Close()
 
 	//final response (may have redirected)
@@ -166,14 +162,23 @@ func (h WebPipeHandler) Handle(r gemini.Request) *gemini.Response {
 
 			//translate html to gmi
 			gmi, err := htmlToGmi(string(contents))
-			
+
 			if err != nil {
 				return &gemini.Response{42, "HTML to GMI conversion failure", nil, nil}
 			}
-			
-			body = ioutil.NopCloser(strings.NewReader(string(gmi)))
+
+			//add a footer to communicate that the content was filtered and not original
+			//also the link provides a clickable link that the user can activate to launch a browser, depending on their client
+			//behaviour (e.g. Ctrl-Click or similar)
+			footer := ""
+			footer += "\n\n──────────────────── 🦆 ──────────────────── 🦆 ──────────────────── \n\n"
+			footer += "Web page filtered and simplified by Duckling Proxy. To view the original content, open the page in your system web browser.\n"
+			footer += "=> " + r.URL.String() + " Source page \n"
+
+			body = ioutil.NopCloser(strings.NewReader(string(gmi) + footer))
+
 			contentType = "text/gemini"
-			
+
 		} else {
 			//let everything else through with the same content type
 			body = ioutil.NopCloser(strings.NewReader(string(contents)))
@@ -197,7 +202,7 @@ func main() {
 
 	info("Starting server on %s port: %d", *address, *port)
 
-	err := gemini.ListenAndServe(*address + ":" + strconv.Itoa(*port), *serverCert, *serverKey, handler)
+	err := gemini.ListenAndServe(*address+":"+strconv.Itoa(*port), *serverCert, *serverKey, handler)
 	if err != nil {
 		log.Fatal(err)
 	}
