@@ -1,0 +1,109 @@
+From 696bd39f792b4b82342fdc9697b903d2152c5417 Mon Sep 17 00:00:00 2001
+From: Luke Emmet <luke.emmet@gmail.com>
+Date: Mon, 31 Aug 2020 16:24:27 +0100
+Subject: [PATCH] allow user to specify a proxy, or to use web browser to open
+ web links
+
+---
+ av98.py | 20 ++++++++++++++++----
+ 1 file changed, 16 insertions(+), 4 deletions(-)
+
+diff --git a/av98.py b/av98.py
+index 50887fe..948c9b7 100755
+--- a/av98.py
++++ b/av98.py
+@@ -310,10 +310,22 @@ class GeminiClient(cmd.Cmd):
+         its a menu, storing the response in a temporary file, choosing
+         and calling a handler program, and updating the history."""
+ 
+-        # Don't try to speak to servers running other protocols
+-        if (gi.scheme in ("http", "https")) and not self.options.get("http_proxy", None):
+-            webbrowser.open_new_tab(gi.url)
+-            return
++        # Don't try to speak to servers running other protocols other than those known
++        if (gi.scheme in ("http", "https")):
++            if not self.options.get("http_proxy", None):
++                # user has not set to use anything yet
++                print("""AV-98 does not speak HTTP natively.
++However, you can use `set http_proxy hostname:port` to tell it about a
++Http-to-Gemini proxy (such as a running Duckling proxy instance), in which case
++you'll be able to transparently follow links to the web!
++Or set it to open web links using your web browser by using 
++`set http_proxy webbrowser`""")
++                return
++            elif self.options["http_proxy"] == "webbrowser":
++                #user has set to webbrowser option
++                webbrowser.open_new_tab(gi.url)
++                return
++                
+         elif gi.scheme == "gopher" and not self.options.get("gopher_proxy", None):
+             print("""AV-98 does not speak Gopher natively.
+ However, you can use `set gopher_proxy hostname:port` to tell it about a
+-- 
+2.18.0.windows.1
+
+From 8ba813fe6c5ec594a93a43b09e78301363226660 Mon Sep 17 00:00:00 2001
+From: Luke Emmet <luke.emmet@gmail.com>
+Date: Mon, 31 Aug 2020 14:20:37 +0100
+Subject: [PATCH] add option to support http proxy, similar to Agena. Use "set
+ http_proxy machine:port" to actvate. Otherwise sticks to launching a web
+ browser
+
+---
+ av98.py | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
+
+diff --git a/av98.py b/av98.py
+index 3176d31..50887fe 100755
+--- a/av98.py
++++ b/av98.py
+@@ -270,6 +270,7 @@ class GeminiClient(cmd.Cmd):
+             "width" : 80,
+             "auto_follow_redirects" : True,
+             "gopher_proxy" : None,
++            "http_proxy": None,
+             "tls_mode" : "tofu",
+         }
+ 
+@@ -310,7 +311,7 @@ class GeminiClient(cmd.Cmd):
+         and calling a handler program, and updating the history."""
+ 
+         # Don't try to speak to servers running other protocols
+-        if gi.scheme in ("http", "https"):
++        if (gi.scheme in ("http", "https")) and not self.options.get("http_proxy", None):
+             webbrowser.open_new_tab(gi.url)
+             return
+         elif gi.scheme == "gopher" and not self.options.get("gopher_proxy", None):
+@@ -319,7 +320,7 @@ However, you can use `set gopher_proxy hostname:port` to tell it about a
+ Gopher-to-Gemini proxy (such as a running Agena instance), in which case
+ you'll be able to transparently follow links to Gopherspace!""")
+             return
+-        elif gi.scheme not in ("gemini", "gopher"):
++        elif gi.scheme not in ("gemini", "gopher", "http", "https"):
+             print("Sorry, no support for {} links.".format(gi.scheme))
+             return
+ 
+@@ -576,6 +577,11 @@ you'll be able to transparently follow links to Gopherspace!""")
+             # For Gopher requests, use the configured proxy
+             host, port = self.options["gopher_proxy"].rsplit(":", 1)
+             self._debug("Using gopher proxy: " + self.options["gopher_proxy"])
++        elif gi.scheme == "http" or gi.scheme == "https":
++            # For Http requests, use the configured proxy
++            host, port = self.options["http_proxy"].rsplit(":", 1)
++            self._debug("Using http proxy: " + self.options["http_proxy"])
++
+ 
+         # Do DNS resolution
+         addresses = self._get_addresses(host, port)
+@@ -1125,7 +1131,7 @@ you'll be able to transparently follow links to Gopherspace!""")
+                 print("Unrecognised option %s" % option)
+                 return
+             # Validate / convert values
+-            if option == "gopher_proxy":
++            if option == "gopher_proxy" or option == "http_proxy":
+                 if ":" not in value:
+                     value += ":1965"
+                 else:
+-- 
+2.18.0.windows.1
+
