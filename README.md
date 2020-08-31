@@ -1,5 +1,5 @@
-# duckling-proxy 🦆
-Duckling proxy is a Gemini proxy to access the Small Web. 
+# Duckling Proxy 🦆
+Duckling proxy is a Gemini proxy to access the Small Web. Connecting to it with your Gemini client means you can access many web pages directly with your favourite client.
 
 Cross platform, written in Go.
 
@@ -70,7 +70,7 @@ You will need to configure your Gemini client to point to the server when there 
 
 The following clients support per-scheme proxies and can be configured to use Duckling proxy.
 
-* AV-98  - apply the patch from this repo under [clients/av-98](clients/av-98/diff.patch), then use `set http_proxy machine:port` to access
+* AV-98  - apply the patch from this repo under [clients/av-98](clients/av-98/patch.diff), then use `set http_proxy machine:port` to access
 * diohsc - edit diohscrc config file
 * gemget - use -p option
 * GemiNaut (unreleased build, coming soon)
