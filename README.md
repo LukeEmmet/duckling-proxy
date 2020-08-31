@@ -21,7 +21,7 @@ With Duckling, you can now browse the Small Web using your favourite Gemini clie
 
 The Duckling proxy 🦆 is a scheme-specific filtering proxy for Gemini clients to access the web. It behaves as a normal Gemini server, except it retrieves its content from the web. You can tailor its behaviour when it starts, to tailor how web pages are transformed to gemtext.
 
-It is scheme-specific, i.e. it is designed to handle HTTP requests only. Agena is another example of a scheme specific proxy, supporting <code>gopher://</code>
+It is scheme-specific, i.e. it is designed to handle HTTP requests only. [Agena](https://tildegit.org/solderpunk/agena) is another example of a scheme specific proxy, supporting <code>gopher://</code>
 
 Web pages are translated to text/gemini. Other web resources are returned directly.
 
@@ -70,7 +70,7 @@ You will need to configure your Gemini client to point to the server when there 
 
 The following clients support per-scheme proxies and can be configured to use Duckling proxy.
 
-* AV-98  - apply the patch from this repo under clients/av-98, then use `set http_proxy machine:port` to access
+* AV-98  - apply the patch from this repo under [clients/av-98](clients/av-98/diff.patch), then use `set http_proxy machine:port` to access
 * diohsc - edit diohscrc config file
 * gemget - use -p option
 * GemiNaut (unreleased build, coming soon)
