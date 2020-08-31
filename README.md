@@ -77,11 +77,11 @@ The following clients support per-scheme proxies and can be configured to use Du
 
 ## Installation
 
-If you have Go installed, you can also install it with:
+If you have Go installed, you can also install the latest commit it with:
 
 ```
 go env -w GO111MODULE=on
-go get github.com/LukeEmmet/duckling-proxy
+go get github.com/LukeEmmet/duckling-proxy@master
 ```
 
 ## Feedback
