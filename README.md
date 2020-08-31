@@ -68,25 +68,20 @@ You will need to configure your Gemini client to point to the server when there 
 
 ## Supported clients
 
+The following clients support per-scheme proxies and can be configured to use Duckling proxy.
+
+* AV-98  - apply the patch from this repo under clients/av-98, then use `set http_proxy machine:port` to access
+* diohsc - edit diohscrc config file
+* gemget - use -p option
 * GemiNaut (unreleased build, coming soon)
-* gemget
-* diohsc
-* AV-98 (adapt Agena handling code for HTTP/HTTPS)
 
 ## Installation
 
-Retrieve the package using Go get
+If you have Go installed, you can also install it with:
 
 ```
 go env -w GO111MODULE=on
 go get github.com/LukeEmmet/duckling-proxy
-```
-
-Build using Go build
-
-```
-go env -w GO111MODULE=on
-go build github.com/LukeEmmet/duckling-proxy
 ```
 
 ## Feedback
