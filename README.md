@@ -78,12 +78,14 @@ You will need to configure your Gemini client to point to the server when there 
 Retrieve the package using Go get
 
 ```
+go env -w GO111MODULE=on
 go get github.com/LukeEmmet/duckling-proxy
 ```
 
 Build using Go build
 
 ```
+go env -w GO111MODULE=on
 go build github.com/LukeEmmet/duckling-proxy
 ```
 
