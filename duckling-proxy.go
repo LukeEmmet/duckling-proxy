@@ -148,7 +148,11 @@ func (h WebPipeHandler) Handle(r gemini.Request) *gemini.Response {
 	}
 
 	contents, err := ioutil.ReadAll(response.Body)
-	check(err)
+	if err != nil {
+		abandonMsg := fmt.Sprintf("Download abandoned after %d seconds: %s", *maxDownloadTime, response.Request.URL.String())
+		info(abandonMsg)
+		return &gemini.Response{43, abandonMsg, nil, nil}
+	}
 
 	if response.StatusCode == 200 {
 		contentType := response.Header.Get("Content-Type")
