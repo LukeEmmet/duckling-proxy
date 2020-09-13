@@ -55,6 +55,7 @@ duckling-proxy [flags]
   -k, --serverKey string        serverKey path.
       --unfiltered              Do not filter text/html to text/gemini
   -u, --userAgent string        User agent for HTTP requests
+  -v, --version                 Find out what version of Duckling Proxy you're running
   
 ```
 
