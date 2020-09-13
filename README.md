@@ -75,7 +75,8 @@ The following clients support per-scheme proxies and can be configured to use Du
 * [AV-98](https://tildegit.org/solderpunk/AV-98)  - use `set http_proxy machine:port` to access
 * [diohsc](https://repo.or.cz/diohsc.git) - edit diohscrc config file
 * [gemget](https://github.com/makeworld-the-better-one/gemget) - use -p option
-* [GemiNaut](https://github.com/LukeEmmet/GemiNaut) (unreleased build, coming soon. PM me if you want early access)
+* [GemiNaut](https://github.com/LukeEmmet/GemiNaut) - unreleased build, coming soon. PM me if you want early access
+* [Lagrange](https://git.skyjake.fi/skyjake/lagrange) - set proxy in preferences (use ipaddress:port, not name:port)
 
 Let me know if your client supports per scheme proxies and I'll add it to the list.
 
