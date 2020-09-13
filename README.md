@@ -71,7 +71,7 @@ You will need to configure your Gemini client to point to the server when there 
 The following clients support per-scheme proxies and can be configured to use Duckling proxy.
 
 * [Amfora](https://github.com/makeworld-the-better-one/amfora) - supports per scheme proxies since v1.5.0
-* [AV-98](https://tildegit.org/solderpunk/AV-98)  - apply the patch from this repo under [clients/av-98](clients/av-98/patch.diff), then use `set http_proxy machine:port` to access
+* [AV-98](https://tildegit.org/solderpunk/AV-98)  - use `set http_proxy machine:port` to access
 * [diohsc](https://repo.or.cz/diohsc.git) - edit diohscrc config file
 * [gemget](https://github.com/makeworld-the-better-one/gemget) - use -p option
 * [GemiNaut](https://github.com/LukeEmmet/GemiNaut) (unreleased build, coming soon. PM me if you want early access)
@@ -95,3 +95,18 @@ Send me your thoughts and feedback to
 luke [at] marmaladefoo [dot] com
 ```
 
+## History
+
+### 0.2.1
+
+First publicly versioned build.
+
+* fix bug whereby Duckling would crash on download timeout.
+* removed patch for AV-98 and updated readme now that AV-98 is officially supports http proxies
+* add -v version flag
+* print version in footer
+
+
+### 0.1
+
+First release (unversioned), 30-Aug-2020

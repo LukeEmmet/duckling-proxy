@@ -17,6 +17,9 @@ import (
 	"time"
 )
 
+
+var version = "0.2.1"
+
 type WebPipeHandler struct {
 }
 
@@ -35,6 +38,7 @@ var (
 	port              = flag.IntP("port", "p", 1965, "Server port")
 	address           = flag.StringP("address", "a", "127.0.0.1", "Bind to address\n")
 	unfiltered        = flag.BoolP("unfiltered", "", false, "Do not filter text/html to text/gemini")
+	verFlag           = flag.BoolP("version", "v", false, "Find out what version of Duckling Proxy you're running")
 )
 
 func fatal(format string, a ...interface{}) {
@@ -176,7 +180,7 @@ func (h WebPipeHandler) Handle(r gemini.Request) *gemini.Response {
 			//behaviour (e.g. Ctrl-Click or similar)
 			footer := ""
 			footer += "\n\n──────────────────── 🦆 ──────────────────── 🦆 ──────────────────── \n\n"
-			footer += "Web page filtered and simplified by Duckling Proxy. To view the original content, open the page in your system web browser.\n"
+			footer += "Web page filtered and simplified by Duckling Proxy v" + version + ". To view the original content, open the page in your system web browser.\n"
 			footer += "=> " + r.URL.String() + " Source page \n"
 
 			body = ioutil.NopCloser(strings.NewReader(string(gmi) + footer))
@@ -202,12 +206,19 @@ func main() {
 
 	flag.Parse()
 
+    if *verFlag {
+		fmt.Println("Duckling Proxy v" + version)
+		return
+	}
+    
 	handler := WebPipeHandler{}
 
-	info("Starting server on %s port: %d", *address, *port)
+     info("Starting Duckling Proxy v%s on %s port: %d", version, *address, *port)
 
 	err := gemini.ListenAndServe(*address+":"+strconv.Itoa(*port), *serverCert, *serverKey, handler)
-	if err != nil {
+
+
+    if err != nil {
 		log.Fatal(err)
 	}
 }
