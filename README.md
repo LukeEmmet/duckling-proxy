@@ -72,11 +72,11 @@ You will need to configure your Gemini client to point to the server when there 
 The following clients support per-scheme proxies and can be configured to use Duckling proxy.
 
 * [Amfora](https://github.com/makeworld-the-better-one/amfora) - supports per scheme proxies since v1.5.0
-* [AV-98](https://tildegit.org/solderpunk/AV-98)  - use `set http_proxy machine:port` to access
+* [AV-98](https://tildegit.org/solderpunk/AV-98)  - Merge [pull request #24](https://tildegit.org/solderpunk/AV-98/pulls/24) then use `set http_proxy machine:port` to access. 
 * [diohsc](https://repo.or.cz/diohsc.git) - edit diohscrc config file
 * [gemget](https://github.com/makeworld-the-better-one/gemget) - use -p option
-* [GemiNaut](https://github.com/LukeEmmet/GemiNaut) - unreleased build, coming soon. PM me if you want early access
-* [Lagrange](https://git.skyjake.fi/skyjake/lagrange) - set proxy in preferences (use ipaddress:port, not name:port)
+* [GemiNaut](https://github.com/LukeEmmet/GemiNaut) - since 0.8.8, which also has its own native html to gemini conversion - update in settings
+* [Lagrange](https://git.skyjake.fi/skyjake/lagrange) - set proxy in preferences (use 127.0.0.1:port, not localhost:port for localhost)
 
 Let me know if your client supports per scheme proxies and I'll add it to the list.
 
