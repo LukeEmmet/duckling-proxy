@@ -77,6 +77,7 @@ The following clients support per-scheme proxies and can be configured to use Du
 * [gemget](https://github.com/makeworld-the-better-one/gemget) - use -p option
 * [GemiNaut](https://github.com/LukeEmmet/GemiNaut) - since 0.8.8, which also has its own native html to gemini conversion - update in settings
 * [Lagrange](https://git.skyjake.fi/skyjake/lagrange) - set proxy in preferences (use 127.0.0.1:port, not localhost:port for localhost)
+* [Telescope](https://github.com/omar-polo/telescope) - set proxy in the config file add: ```proxy "https" via "gemini://127.0.0.1:1965"```, and similarly for http
 
 Let me know if your client supports per scheme proxies and I'll add it to the list.
 
